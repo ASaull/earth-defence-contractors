@@ -1,0 +1,166 @@
+\title{Tower Defence Game}
+\author{Aidan Saull}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\begin{document}
+\maketitle
+
+\section*{Basics}
+
+\begin{itemize}
+\item Players play as government contractors tasked with saving the Earth
+\item Same starting contract amount
+\item After the first wave, the defense budget is split according to exactly how
+much work each company did
+\item In subsequent rounds, the defense budget is spent relative to how much
+each contractor contributed relative to their budget. (if all contractors do 
+poorly relative to their contracts, they can all secure more money later)
+\item The player who had the worst performance will lose money due to damages
+if any enemies get through to the Earth.
+\item Game ends once the Earth is destroyed or all waves are cleared (maybe,
+waves may be infinite)
+\item Winner is the player with the biggest overall profit.
+\end{itemize}
+
+\section*{Gameplay}
+\begin{itemize}
+\item Enemies have health and shields, some weapons work better on health and
+some on shields
+\item We do the math on how much it ``costs'' to destroy a point of shield vs
+a point of health and adjust performance scores accordingly
+\item First round enemies have only health and no shield
+\item Later enemies will tend to continue on a health and shield percent trend,
+however sometimes a round will counter the trend.
+\item Turrets are placed in any circular orbit. Orbits below 400km will decay
+after three rounds no matter what, all other orbits will never decay.
+\item Cost to put a turret into orbit increase as the orbit height increases.
+This is rewarded due to the fact that late game turrets have large ranges much
+greater than say 400km. Putting a 2000km range turret 600km above the earth is
+inefficient as range is wasted. Additionally, some of the best high range
+turrets cannot shoot through the Earth, and they will therefore see more if
+they are higher. Thirdly, high orbit turrets can achieve higher performance
+(idk what I meant by this). Fourthly, some enemies will move slowly at a high
+orbit, but very quickly through lower orbits.
+\item Turrets orbit at appropriate speeds. This means that turrets may,
+through bad luck have a very poor performance in any given round.
+\end{itemize}
+
+\section*{Economy - based on obsevations}
+\begin{itemize}
+\item \textbf{\textit{At no point in the development of this game will I ever
+attempt to allow spending no money to be a legitimate strategy.}}
+\item This section will be filled as observations about the economy round to
+round are made.
+\end{itemize}
+
+
+\section*{Classes}
+
+\subsection*{GameController}
+\subsubsection*{Private Attributes}
+\begin{itemize}
+\item \texttt{player\_list} - list of \texttt{Corporation}
+\item \texttt{base\_health}
+\item \texttt{round\_number}
+\item \texttt{enemy\_shield\_percent} - apprx. percent of enemies health that is
+shield.
+\item \texttt{enemy\_shield\_pierce\_percent} - apprx. percent of enemies that
+fire shield piercing weapons
+\item \texttt{enemy\_types} - list of \texttt{Enemy}
+\item \texttt{game\_state} - what stage the game is on. \texttt{Build},\
+\texttt{Combat}, or \texttt{Recap}
+\item \texttt{defence\_budget}
+\end{itemize}
+\subsubsection*{Public Attributes}
+\begin{itemize}
+\item 
+\end{itemize}
+\subsubsection*{Methods/Functions}
+\begin{itemize}
+\item \texttt{calculate\_budgets} - returns the a list of budgets for each
+of the corporations
+\item \texttt{start\_game}
+\item \texttt{start\_round} - begins spawning of enemies and activates defences
+\item \texttt{end\_round} - sums up the round, awards contracts and adjusts
+global budget
+\end{itemize}
+
+
+
+\subsection*{Corporation}
+\subsubsection*{Private Attributes}
+\begin{itemize}
+\item \texttt{budget}
+\item \texttt{funds}
+\item \texttt{performance} - Score of enemies destroyed
+\end{itemize}
+\subsubsection*{Public Attributes}
+\begin{itemize}
+\item 
+\end{itemize}
+\subsubsection*{Methods/Functions}
+\begin{itemize}
+\item \texttt{get\_budget} - returns last round's budget
+\item \texttt{set\_budget(budget)} - sets the budget for next round
+\item \texttt{get\_performance(performance)} - returns last round's performance
+\item \texttt{update} - will monitor for player input when placing defences
+\item \texttt{place\_defence(defence\_type, position)}
+\end{itemize}
+
+
+\subsection*{Defence} A generic defense. Only children of this class will ever
+be instantiated.
+\subsubsection*{Private Attributes}
+\begin{itemize}
+\item \texttt{health}
+\item \texttt{shield}
+\item \texttt{altitude}
+\item \texttt{current\_target} - an \texttt{Enemy} that this turret is currently
+targeting
+\item \texttt{upgrades} - a dictionary with keys as upgrade types, and values as
+upgrade descriptions
+\item \texttt{current\_upgrades} - a dictionary with keys as upgrade types, and
+values as the current level of that upgrade.
+\end{itemize}
+\subsubsection*{Public Attributes}
+\begin{itemize}
+\item 
+\end{itemize}
+\subsubsection*{Methods/Functions}
+\begin{itemize}
+\item \texttt{update} - set enemy to target, call attack, call move - 
+\textit{Not Implemented}
+\item \texttt{attack(enemy)} - attack designated enemy
+\item \texttt{upgrade(upgrade\_type)} - upgrade this defence by the specified
+type once, returns True if completed, or False if not possible.
+\item \texttt{move} - simply orbit the Earth.
+\end{itemize}
+
+\subsection*{Enemy} A generic enemy. Only children of this class will ever
+be instantiated.
+\subsubsection*{Private Attributes}
+\begin{itemize}
+\item \texttt{health}
+\item \texttt{shield}
+\item \texttt{current\_target} - a \texttt{defence} that this turret is
+currently targeting
+\end{itemize}
+\subsubsection*{Public Attributes}
+\begin{itemize}
+\item 
+\end{itemize}
+\subsubsection*{Methods/Functions}
+\begin{itemize}
+\item \texttt{update} - set defence to target, call attack, call move - 
+\textit{Not Implemented}
+\item \texttt{attack(enemy)} - attack designated defence
+\item \texttt{move} - choose a path to follow down to the surface
+\end{itemize}
+
+
+
+
+\end{document}
+  
