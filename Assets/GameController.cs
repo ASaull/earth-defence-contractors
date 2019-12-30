@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject player_prefab;
-    private List<GameObject> player_list;
+    public List<GameObject> player_list;
     public List<Corporation> corp_list;
     private int base_health;
     private int round_number;
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             GameObject player = Instantiate(player_prefab, new Vector3(0, 0, 0),
-                                            Quaternion.identity);
+                                            Quaternion.identity) as GameObject;
             Corporation corp = player.GetComponent<Corporation>();
             corp.name = names[i];
             corp_list.Add(corp);
