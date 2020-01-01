@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraController.cs" />
      <Compile Include="Assets\Corporation.cs" />
      <Compile Include="Assets\GameController.cs" />
      <Compile Include="Assets\MainMenuController.cs" />
