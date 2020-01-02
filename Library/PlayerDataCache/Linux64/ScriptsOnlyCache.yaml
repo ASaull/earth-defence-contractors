@@ -878,7 +878,7 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: cc9809aee5c83fc3affa1ccdaeb611be
+      Hash: a102d502aa2dd92ed0626a89de8b7fe6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraController

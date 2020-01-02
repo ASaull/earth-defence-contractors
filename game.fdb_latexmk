@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1577739759 "game.tex" "game.pdf" "game" 1577739759
+["pdflatex"] 1577918592 "game.tex" "game.pdf" "game" 1577918592
   "/etc/texmf/web2c/texmf.cnf" 1548283883 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1480098701 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm" 1480098701 1532 9162035f4e7176612125649e348e2195 ""
@@ -23,9 +23,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1535076666 32752 ce45b90d2fda49befaa367e6f5986072 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1569958968 77787 6a7faba92a27e40e39fb3e17940a3648 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1569958885 789658 1735a98649a8c56a77fc09187759e861 ""
-  "game.aux" 1577739759 8 a94a2480d3289e625eea47cd1b285758 ""
-  "game.tex" 1577739749 5969 23f1858be042bc9ad5f1dce178ef4f16 ""
+  "game.aux" 1577918592 8 a94a2480d3289e625eea47cd1b285758 ""
+  "game.tex" 1577918591 6562 826c9203a8eab005797b8890622af207 ""
   (generated)
   "game.aux"
-  "game.log"
   "game.pdf"
+  "game.log"

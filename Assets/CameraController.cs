@@ -19,6 +19,8 @@ public class CameraController : MonoBehaviour
 
     public int sensitivity = 200;
     public float zoom_sensitivity = .5f;
+    public float upper_limit = 80;
+    public float lower_limit = 10;
 
     bool down = false;
 
@@ -35,7 +37,6 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Pressed secondary button.");
             mouse_position.x = Input.mousePosition.x / width;
             mouse_position.y = Input.mousePosition.y / height;
             old_position = mouse_position;
@@ -43,9 +44,23 @@ public class CameraController : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(1))
         {
-            Debug.Log("Released secondary button.");
             down = false;
         }
+
+        // We also check the scroll wheel delta and zoom accordingly from 3 to 30
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            float input = -Input.mouseScrollDelta.y;
+            if (input < 0)
+                zoom_amount = (input * zoom_sensitivity * (camera.localPosition.z + (input * zoom_sensitivity * camera.localPosition.z)));
+            else
+                zoom_amount = (input * zoom_sensitivity * camera.localPosition.z);
+            zoom_frac = Mathf.Abs(zoom_amount / 5);
+        }
+    }
+    
+    void FixedUpdate()
+    {
         if (down)
         {
             // The mouse is down, we want to be moving the camera if old is different from
@@ -58,16 +73,16 @@ public class CameraController : MonoBehaviour
                 gameObject.transform.Rotate(rotate_amount_x, Space.World);
                 rotate_amount_y = new Vector3((old_position.y - mouse_position.y) * sensitivity, 0f, 0f); 
 
-                if (pitch.eulerAngles.x + rotate_amount_y.x > 44 &&
+                if (pitch.eulerAngles.x + rotate_amount_y.x > upper_limit - 1 &&
                     pitch.eulerAngles.x + rotate_amount_y.x < 180)
                 {
-                    pitch.Rotate(new Vector3(45f - pitch.eulerAngles.x, 0f, 0f));
+                    pitch.Rotate(new Vector3(upper_limit - pitch.eulerAngles.x, 0f, 0f));
                 }
-                else if (pitch.eulerAngles.x + rotate_amount_y.x < 316 &&
+                else if (pitch.eulerAngles.x + rotate_amount_y.x < (360 + lower_limit + 1) % 360 &&
                          pitch.eulerAngles.x + rotate_amount_y.x > 180)
 
                 {
-                    pitch.Rotate(new Vector3(-45f - pitch.eulerAngles.x, 0f, 0f));
+                    pitch.Rotate(new Vector3(lower_limit - pitch.eulerAngles.x, 0f, 0f));
                 }
                 else
                     pitch.Rotate(rotate_amount_y);
@@ -104,39 +119,25 @@ public class CameraController : MonoBehaviour
                     rotate_amount_y.x = rotate_amount_y.x - fracy;
                 }
 
-                Debug.Log(rotate_amount_y.x);
 
 
 
-                if (pitch.eulerAngles.x + rotate_amount_y.x > 45 &&
+                if (pitch.eulerAngles.x + rotate_amount_y.x > upper_limit &&
                     pitch.eulerAngles.x + rotate_amount_y.x < 180)
 
                 {
-                    pitch.Rotate(new Vector3(45f - pitch.eulerAngles.x, 0f, 0f));
+                    pitch.Rotate(new Vector3(upper_limit - pitch.eulerAngles.x, 0f, 0f));
                 }
-                else if (pitch.eulerAngles.x + rotate_amount_y.x < 315 &&
+                else if (pitch.eulerAngles.x + rotate_amount_y.x < (360 + lower_limit) % 360 &&
                          pitch.eulerAngles.x + rotate_amount_y.x > 180)
 
                 {
-                    pitch.Rotate(new Vector3(-45f - pitch.eulerAngles.x, 0f, 0f));
+                    pitch.Rotate(new Vector3(lower_limit - pitch.eulerAngles.x, 0f, 0f));
                 }
                 else
                     pitch.Rotate(rotate_amount_y);
             }
         }
-
-        // We also check the scroll wheel delta and zoom accordingly from 3 to 30
-        if (Input.mouseScrollDelta.y != 0)
-        {
-            float input = -Input.mouseScrollDelta.y;
-            if (input < 0)
-                zoom_amount = (input * zoom_sensitivity * (camera.localPosition.z + (input * zoom_sensitivity * camera.localPosition.z)));
-            else
-                zoom_amount = (input * zoom_sensitivity * camera.localPosition.z);
-            zoom_frac = Mathf.Abs(zoom_amount / 5);
-        }
-
-        Debug.Log("ZOOM: " + zoom_amount);
 
         if (zoom_amount != 0)
         {
