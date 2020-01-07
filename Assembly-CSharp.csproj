@@ -61,7 +61,9 @@
      <Compile Include="Assets\MainMenuController.cs" />
      <Compile Include="Assets\OrbitTest.cs" />
      <Compile Include="Assets\PlayerController.cs" />
-     <Compile Include="Assets\SatelliteController.cs" />
+     <Compile Include="Assets\Satellites\sat_mk1.cs" />
+     <Compile Include="Assets\Satellites\SatelliteController.cs" />
+     <Compile Include="Assets\SatListController.cs" />
      <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
      <Compile Include="Assets\SteamTest.cs" />
  <Reference Include="Unity.Timeline.Editor">

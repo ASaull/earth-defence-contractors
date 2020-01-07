@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Vector3 mouse_position;
-    Vector3 old_position;
-    Vector3 rotate_amount_x;
-    Vector3 rotate_amount_y;
-    float width = (float) Screen.width;
-    float height = (float) Screen.height;
-    float fracx;
-    float fracy;
-    float zoom_amount;
-    float zoom_frac;
-    Transform pitch;
-    Transform camera;
+    Vector3 mouse_position;               // The current mouse position on the screen
+    Vector3 old_position;                 // The last position of the mouse
+    Vector3 rotate_amount_x;              // The amount that the camera should rotate
+    Vector3 rotate_amount_y;              // this frame in x and in y
+    float width = (float) Screen.width;   // width and height of screen, not const
+    float height = (float) Screen.height; // because screen could be resized?
+    float fracx;                          // A fraction of the rotation in x and y,
+    float fracy;                          // this is used in deceleration
+    float zoom_amount;                    // The amount to zoom in the current frame
+    float zoom_frac;                      // fraction of zoom for deceleration
+    Transform pitch;                      // The pitch object
+    Transform camera;                     // The camera object itself
+    int counter = 3;                      // A frame counter for natural deceleration
 
     public int sensitivity = 200;
     public float zoom_sensitivity = .5f;
@@ -86,6 +87,19 @@ public class CameraController : MonoBehaviour
                 }
                 else
                     pitch.Rotate(rotate_amount_y);
+                counter = 3;
+            }
+            else
+            {
+                if (counter == 0)
+                {
+                    rotate_amount_x = new Vector3(0f, 0f, 0f);
+                    rotate_amount_y = new Vector3(0f, 0f, 0f);
+                }
+                else
+                {
+                    counter--;
+                }
             }
             old_position = mouse_position;
             fracx = Mathf.Abs(rotate_amount_x.y / 20f);
