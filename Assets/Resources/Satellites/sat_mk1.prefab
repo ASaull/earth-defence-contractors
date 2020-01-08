@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab2cf9e4fe1688d09e26d16465f6b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  altitude: 0
+  altitude: 300
   current_phase: 0
   owner: {fileID: 0}
-  satellite: {fileID: 0}
+  satellite: {fileID: 5850796381206237384}
   sat_name: Mark I
