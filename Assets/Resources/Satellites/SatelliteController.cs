@@ -9,6 +9,7 @@ public enum Phase
     Active = 2,
 }
 
+[System.Serializable]
 public class SatelliteController : MonoBehaviour
 {
     // constants
@@ -61,10 +62,6 @@ public class SatelliteController : MonoBehaviour
         {
             float old = angular_velocity;
             angular_velocity = Mathf.Sqrt(GMe / Mathf.Pow(altitude, 2));
-            if (old != angular_velocity)
-            {
-                Debug.Log(angular_velocity);
-            }
 
             gameObject.transform.Rotate(new Vector3(0f, angular_velocity, 0f));
         }

@@ -312,6 +312,7 @@
 "Assets/MainMenuController.cs"
 "Assets/OrbitTest.cs"
 "Assets/PlayerController.cs"
-"Assets/SatelliteController.cs"
+"Assets/Resources/Satellites/SatelliteController.cs"
+"Assets/SatListController.cs"
 "Assets/Scripts/Steamworks.NET/SteamManager.cs"
 "Assets/SteamTest.cs"

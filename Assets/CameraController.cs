@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     float zoom_frac;                      // fraction of zoom for deceleration
     Transform pitch;                      // The pitch object
     Transform camera;                     // The camera object itself
-    int counter = 3;                      // A frame counter for natural deceleration
+    int counter = 1;                      // A frame counter for natural deceleration
 
     public int sensitivity = 200;
     public float zoom_sensitivity = .5f;
@@ -87,7 +87,7 @@ public class CameraController : MonoBehaviour
                 }
                 else
                     pitch.Rotate(rotate_amount_y);
-                counter = 3;
+                counter = 1;
             }
             else
             {
