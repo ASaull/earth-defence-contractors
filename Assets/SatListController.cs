@@ -30,6 +30,7 @@ public class SatListController : MonoBehaviour
 
     }
 
+    // This function will toggle the satellite of type sat to be created or destroyed in preview mode
     void Preview(GameObject sat)
     {
         if (current_sat == null)
