@@ -13,7 +13,7 @@ public enum Phase
 public class SatelliteController : MonoBehaviour
 {
     // constants
-    const float GMe = 398380f;
+    const float GMe = 39838.0f;
 
     // Public variables
     public int altitude;

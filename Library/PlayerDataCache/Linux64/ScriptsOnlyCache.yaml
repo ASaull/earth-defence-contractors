@@ -4,10 +4,28 @@ ScriptsOnlyBuild:
     - CameraController
     - Corporation
     - GameController
+    - SatListController
+    - SatelliteController
     - SteamManager
     - SteamTest
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.HorizontalLayoutGroup
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
+    - UnityEngine.UI.Slider
+    - UnityEngine.UI.Text
+    - UnityEngine.UI.VerticalLayoutGroup
     com.unity.multiplayer-hlapi.Runtime.dll:
     - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
@@ -42,32 +60,68 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9266}
+      Script: {instanceID: 9240}
     - Class: 114
-      Script: {instanceID: 9300}
+      Script: {instanceID: 9268}
     - Class: 114
-      Script: {instanceID: 9328}
+      Script: {instanceID: 9302}
     - Class: 114
       Script: {instanceID: 9330}
     - Class: 114
-      Script: {instanceID: 9376}
+      Script: {instanceID: 9332}
     - Class: 114
-      Script: {instanceID: 9394}
+      Script: {instanceID: 9378}
     - Class: 114
-      Script: {instanceID: 9710}
+      Script: {instanceID: 9396}
     - Class: 114
-      Script: {instanceID: 10074}
+      Script: {instanceID: 9428}
     - Class: 114
-      Script: {instanceID: 10198}
+      Script: {instanceID: 9430}
     - Class: 114
-      Script: {instanceID: 10522}
+      Script: {instanceID: 9432}
     - Class: 114
-      Script: {instanceID: 10574}
+      Script: {instanceID: 9436}
     - Class: 114
-      Script: {instanceID: 10932}
+      Script: {instanceID: 9442}
     - Class: 114
-      Script: {instanceID: 20472}
+      Script: {instanceID: 9446}
+    - Class: 114
+      Script: {instanceID: 9450}
+    - Class: 114
+      Script: {instanceID: 9452}
+    - Class: 114
+      Script: {instanceID: 9458}
+    - Class: 114
+      Script: {instanceID: 9476}
+    - Class: 114
+      Script: {instanceID: 9478}
+    - Class: 114
+      Script: {instanceID: 9484}
+    - Class: 114
+      Script: {instanceID: 9486}
+    - Class: 114
+      Script: {instanceID: 9488}
+    - Class: 114
+      Script: {instanceID: 9498}
+    - Class: 114
+      Script: {instanceID: 9712}
+    - Class: 114
+      Script: {instanceID: 10076}
+    - Class: 114
+      Script: {instanceID: 10200}
+    - Class: 114
+      Script: {instanceID: 10524}
+    - Class: 114
+      Script: {instanceID: 10576}
+    - Class: 114
+      Script: {instanceID: 10762}
+    - Class: 114
+      Script: {instanceID: 10936}
+    - Class: 114
+      Script: {instanceID: 11008}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -75,9 +129,23 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: d8db4b6bce177a63efc8f4967857e5e8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SatListController
   - hash:
       serializedVersion: 2
       Hash: 984dcc0ba3707b7691fbdca8ff508d28
@@ -806,6 +874,12 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
+      Hash: 859007d7c3d0ac61cca8c19848e96608
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraController
+  - hash:
+      serializedVersion: 2
       Hash: 1dcb82730d983b77cec736c6ef19f814
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -854,6 +928,12 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
+      Hash: 97ddad4a218504b2dbd8a69f8937b55c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SatelliteController
+  - hash:
+      serializedVersion: 2
       Hash: e0ee4b3d4e27318934cc940a969d3d96
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
@@ -876,12 +956,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: a102d502aa2dd92ed0626a89de8b7fe6
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraController
   platform: 24
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
