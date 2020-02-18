@@ -13,7 +13,7 @@ public enum Phase
 public class SatelliteController : MonoBehaviour
 {
     // constants
-    const float GMe = 39838.0f;
+    const float GMe = 398380f;
 
     // Public variables
     public int altitude;
@@ -26,6 +26,9 @@ public class SatelliteController : MonoBehaviour
     bool orbiting = false;
     float angular_velocity;
     int old_alt;
+    LineRenderer line;
+    Vector3[] points;
+    float radius;
 
 
     // Start is called before the first frame update
@@ -38,8 +41,31 @@ public class SatelliteController : MonoBehaviour
             // In this case, the current user is previewing this satellite
             // We start it out with a base altitude of 400, and we preview it orbiting
             //altitude = 300;
-            orbiting = true;
+            orbiting = false;
+
+            // We want to create the preview circle
+            line = gameObject.AddComponent<LineRenderer>();
+            line.useWorldSpace = false;
+            line.startWidth = 0.02f;
+            line.endWidth = 0.02f;
+            line.positionCount = 361;
+
+            points = new Vector3[361];
+
+            DrawOrbit();
         }
+    }
+
+    void DrawOrbit()
+    {
+        radius = 1 + (float)altitude / 2000f;
+        for (int i = 0; i < 361; i++)
+        {
+            var rad = Mathf.Deg2Rad * (i * 360f / 360);
+            points[i] = new Vector3(Mathf.Sin(rad) * radius, 0, Mathf.Cos(rad) * radius);
+        }
+            
+        line.SetPositions(points);
     }
 
     // This function is called when the player is previewing the creation of this satellite.
@@ -55,8 +81,37 @@ public class SatelliteController : MonoBehaviour
 
     }
 
+    // This function is called by the SatListController when
+    // this satellite's inclination is updated
+    public void ChangeInclination(int new_inc)
+    {
+
+    }
+
+    // This function is called by the SatListController when
+    // the satellite's longitude is updated
+    public void ChangeLongitude(int new_long)
+    {
+
+    }
+    
+    // This function is called by the SatListControler when
+    // the satellite's starting anomaly is updated
+    public void ChangeAnomaly(int new_anom)
+    {
+
+    }
+
+    // This function is called by the SatListController when
+    // the satellite's Altitude is updated
+    public void ChangeAltitude(int new_alt)
+    {
+        altitude = new_alt;
+        DrawOrbit();
+    }
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (orbiting)
         {
