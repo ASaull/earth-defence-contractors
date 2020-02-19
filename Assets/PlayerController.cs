@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public string name;
 
+    public List<GameObject> satellites;
+
     // Start is called before the first frame update
     void Start()
     {

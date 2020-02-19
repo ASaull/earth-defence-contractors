@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameController : MonoBehaviour
     public List<GameObject> enemy_types;
     private string game_state = "introduction";
     private int defence_budget;
+
+    public GameObject local_player;
+    public GameObject ready_button;
 
     void calculate_budgets()
     {
@@ -41,6 +45,23 @@ public class GameController : MonoBehaviour
             corp.name = names[i];
             corp_list.Add(corp);
             player_list.Add(player);
+
+            if (i == 0)
+            {
+                local_player = player;
+            }
+        }
+    }
+
+    void Ready()
+    {
+        Debug.Log("READY");
+        foreach (Corporation corp in corp_list)
+        {
+            foreach (GameObject sat in corp.satellites)
+            {
+                sat.GetComponent<SatelliteController>().Deploy();
+            }
         }
     }
 
@@ -51,10 +72,8 @@ public class GameController : MonoBehaviour
         var name_list = new List<string>() {"Hayabusa Heavy Industries",
                                   "Stark Industries"};
         create_players(2, name_list);
-        //foreach (GameObject go in player_list)
-        //{
-        //   corp_list.Add(go.GetComponent<Corporation>());
-        //}
+
+        ready_button.GetComponent<Button>().onClick.AddListener(Ready);
     }
 
     // Update is called once per frame

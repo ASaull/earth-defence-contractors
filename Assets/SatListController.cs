@@ -9,10 +9,13 @@ public class SatListController : MonoBehaviour
     public GameObject[] satellites;
     public GameObject base_button;
     public GameObject info_panel;
+    public GameObject game_controller;
+    public GameObject launch_button;
 
     private GameObject current_sat = null;
     private SatelliteController current_sat_controller;
     private Text info_title;
+    private GameObject local_player;
 
     public InputField inclination_field;
     public Slider inclination_slider;
@@ -33,6 +36,7 @@ public class SatListController : MonoBehaviour
     private Slider[] sliders;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +46,8 @@ public class SatListController : MonoBehaviour
         info_panel.SetActive(false);
         sliders = new Slider[] {inclination_slider, altitude_slider, anomaly_slider, longitude_slider};
 
+        launch_button.GetComponent<Button>().onClick.AddListener(delegate{Launch();});
+ 
         // we will search the Assets/Satellites directory to find
         // the available satellite types to add them to the list
         foreach (GameObject satellite in satellites)
@@ -89,6 +95,17 @@ public class SatListController : MonoBehaviour
         }
     }
 
+    public void Launch()
+    {
+        // Getting the local player object
+        local_player = game_controller.GetComponent<GameController>().local_player;
+
+        GameObject new_sat = current_sat;
+        current_sat = null;
+        local_player.GetComponent<Corporation>().AddSatellite(new_sat);
+        info_panel.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -101,6 +118,13 @@ public class SatListController : MonoBehaviour
                  // Altitude was changed
                  current_sat_controller.ChangeAltitude((int)altitude_slider.value);
                  old_alt = (int)altitude_slider.value;
+             }
+
+             if (old_anom != anomaly_slider.value)
+             {
+                 // Anomaly was changed
+                 current_sat_controller.ChangeAnomaly((int)anomaly_slider.value);
+                 old_anom = (int)anomaly_slider.value;
              }
          }
     }

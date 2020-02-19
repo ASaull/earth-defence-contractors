@@ -30,6 +30,8 @@ public class SatelliteController : MonoBehaviour
     Vector3[] points;
     float radius;
 
+    int anomaly = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -76,9 +78,10 @@ public class SatelliteController : MonoBehaviour
     }
 
     // This function is called when the player purchases this satellite.
-    void Deploy()
+    public void Deploy()
     {
-
+        Debug.Log("deploying");
+        orbiting = true;
     }
 
     // This function is called by the SatListController when
@@ -99,7 +102,8 @@ public class SatelliteController : MonoBehaviour
     // the satellite's starting anomaly is updated
     public void ChangeAnomaly(int new_anom)
     {
-
+        anomaly = new_anom;
+        gameObject.transform.Rotate(new Vector3(0f, anomaly - gameObject.transform.eulerAngles.y, 0f));
     }
 
     // This function is called by the SatListController when
@@ -107,6 +111,7 @@ public class SatelliteController : MonoBehaviour
     public void ChangeAltitude(int new_alt)
     {
         altitude = new_alt;
+        satellite.transform.localPosition = new Vector3(1 + ((float)altitude / 2000f), 0f, 0f);
         DrawOrbit();
     }
 
@@ -120,14 +125,5 @@ public class SatelliteController : MonoBehaviour
 
             gameObject.transform.Rotate(new Vector3(0f, angular_velocity, 0f));
         }
-
-        // We always adjust the distance
-        if (altitude != old_alt)
-        {
-            // alt was changed, adjust distance where each .15 is 300km
-            // starting at 1
-            satellite.transform.position = new Vector3(1 + ((float)altitude / 2000f), 0f, 0f);
-        }
-        old_alt = altitude;
     }
 }
