@@ -1,4 +1,4 @@
-# Earth Defence Cntractors
+# Earth Defence Contractors
 
 A competitive co-op game under development.
 
