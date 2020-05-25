@@ -1,6 +1,6 @@
 # Earth Defence Contractors
 
-A competitive co-op game under development.
+A steam multiplayer competitive co-op game under development.
 
 ### Running
 
